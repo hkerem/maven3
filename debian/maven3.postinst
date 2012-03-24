@@ -1,0 +1,40 @@
+#!/bin/bash 
+# This script can be called in the following ways:
+#
+# After the package was installed:
+#	<postinst> configure <old-version>
+#
+#
+# If prerm fails during upgrade or fails on failed upgrade:
+#	<old-postinst> abort-upgrade <new-version>
+#
+# If prerm fails during removal:
+#	<old-postinst> abort-remove
+#
+# If prerm fails during deconfiguration of a package:
+#	<postinst> abort-deconfigure in-favour <new-package> <version>
+#		   removing <old-package> <version>
+#
+# If prerm fails during replacement due to conflict:
+#	<postinst> abort-remove in-favour <new-package> <version>
+
+MVNBIN=/usr/bin/mvn
+MVNBINSRC=/usr/share/maven3/bin/mvn
+LN=/bin/ln
+
+case "$1" in
+    configure)
+	[ -e $MVNBIN ] || $LN -s $MVNBINSRC $MVNBIN
+	;;
+
+    abort-upgrade|abort-deconfigure|abort-remove)
+	;;
+
+    *)
+	echo "$0 called with unknown argument \`$1'" 1>&2
+	exit 1
+	;;
+esac
+
+
+exit 0
