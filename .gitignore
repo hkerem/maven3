@@ -6,4 +6,14 @@ configure
 debian/compat
 install-sh
 missing
+Makefile
+Makefile.in
+config.log
+config.status
+debian/files
+debian/maven3.debhelper.log
+debian/maven3.substvars
+debian/maven3/
+debian/stamp-autotools-files
+debian/stamp-makefile-build
 
